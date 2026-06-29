@@ -2,6 +2,7 @@ import { useState } from "react";
 import userData from "../assets/InfoUsuario";
 import PostModal from "./PostModal";
 import "./Profile.css";
+import { FlatList } from "react-native-web";
 
 function Profile({ posts = [] }) {
   const [selectedPost, setSelectedPost] = useState(null);
@@ -53,18 +54,14 @@ function Profile({ posts = [] }) {
       </View>
 
       <View className="profile-grid">
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="profile-grid-item"
-            onClick={() => setSelectedPost(post)}
-          >
-            <Image src={post.image} alt={post.username} className="profile-grid-img" />
-            <div className="profile-grid-overlay">
-              <span>{post.likes}</span>
-            </div>
-          </div>
-        ))}
+        <FlatList
+                       data={posts}
+                       keyExtractor={(item) => item.id.toString()}
+                       showsVerticalScrollIndicator={false}
+                       renderItem={({ item }) => (<Post img={item.image} user={item.username} likes={item.likes} post={item} onOpenPost={() => navigation.navigate("Detalle", {post: item,})} />
+                        )}
+                    />
+
       </View>
 </>
   )
