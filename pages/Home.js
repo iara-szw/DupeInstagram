@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import {View, FlatList,StyleSheet} from "react-native";
-import Stories from "../components/Stories";
-import Feed from "../components/Feed";
-import Header from "../components/Header";
+import { View, Text, StyleSheet } from "react-native";
+import Stories from "../componentes/Stories";
+import Header from "../componentes/Header";
+import Feed from "../componentes/Feed";
 
-import { ObtenerImagenes } from "../services/CatAPI";
+import { ObtenerImagenes } from "../services/CatApi";
 
 export default function HomeScreen({ navigation }) {
+  const [posts, setPosts] = useState([]);
 
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
+  useEffect(() => {
     const fetchCats = async () => {
       const data = await ObtenerImagenes();
+      console.log("CatApi data length", data.length);
       const formattedPosts = data.map((cat, index) => ({
         id: cat.id,
         image: cat.url,
@@ -24,28 +24,24 @@ export default function HomeScreen({ navigation }) {
     fetchCats();
   }, []);
 
-    return (
-        <View style={styles.container}>
-            <Header navigation={navigation}
-            />
-
-            <FlatList ListHeaderComponent={<Stories posts={posts}/>}
-                data={posts}
-                keyExtractor={(item)=>item.id}
-                renderItem={({item})=>(
-                <FeedItem post={item} onPress={()=>navigation.navigate("Detalle",{post:item})}/>)}
-
-            />
-
-        </View>
-
-    );
-
+  return (
+    <View style={styles.container}>
+      <Header navigation={navigation} />
+      <Text style={styles.debugText}>{posts.length ? `Posts: ${posts.length}` : "Cargando..."}</Text>
+      <Stories posts={posts} />
+      <Feed posts={posts} navigation={navigation} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  debugText: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    color: "#111",
   },
 });

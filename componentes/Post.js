@@ -1,63 +1,123 @@
-import "./Post.css";
-import likesIMG from "../assets/likes.png";
-import comentarIMG from "../assets/comentar.png";
-import mensajesIMG from "../assets/mensajes.png";
-import guardarIMG from "../assets/guardar.png";
+import { View, Image, Text, StyleSheet, Pressable } from "react-native";
 
-function Post({ img, user, likes,onOpenModal,post  }) {
+function Post({ img, user, likes, post, onOpenPost }) {
   return (
-    <View className="post">
-      <View className="post-header">
-        <View className="usuario">
-          <Image
-            className="foto-perfil"
-            src={img}
-            alt=""
-          />
-
-          <Text>{user}</Text>
-          <span className="tiempo">• 5h</span>
+    <Pressable onPress={onOpenPost}>
+      <View style={styles.post}>
+        <View style={styles.postHeader}>
+          <View style={styles.usuario}>
+            <Image
+              source={{ uri: img }}
+              style={styles.fotoPerfil}
+            />
+            <Text style={styles.username}>{user}</Text>
+            <Text style={styles.tiempo}>• 5h</Text>
+          </View>
+          <Text style={styles.menu}>⋯</Text>
         </View>
 
-        <Text>⋯</Text>
-      </View>
+        <Image
+          source={{ uri: img }}
+          style={styles.postImg}
+        />
 
-      <Image
-        className="post-img"
-        src={img}
-        alt="post"
-        onClick={() => onOpenModal(post)}
-        style={{ cursor: "pointer" }}
-      />
-
-      <View className="BarraOpciones">
-        <View className="botones-izq">
-          <Image src={likesIMG} alt="" />
-          <Image src={comentarIMG} alt="" />
-          <Image src={mensajesIMG} alt="" />
+        <View style={styles.barraOpciones}>
+          <View style={styles.botonesIzq}>
+            <Text style={styles.botonIcon}>❤️</Text>
+            <Text style={styles.botonIcon}>💬</Text>
+            <Text style={styles.botonIcon}>✈️</Text>
+          </View>
+          <Text>🔖</Text>
         </View>
 
-        <Image src={guardarIMG} alt="" />
+        <View style={styles.extras}>
+          <Text style={styles.likes}>{likes} likes</Text>
+          <Text style={styles.caption}>
+            <Text style={{ fontWeight: "bold" }}>{user}</Text> cat🐱
+          </Text>
+          <Text style={styles.comentarios}>Ver los 100 comentarios</Text>
+          <Text style={styles.addComment}>Agregar un comentario</Text>
+        </View>
       </View>
-<View className="extras">
-
-      <Text className="likes">
-        {likes} likes
-      </Text>
-      <Text className="caption">
-        <strong>{user}</strong> cat🐱
-      </Text>
-
-      <Text className="comentarios">
-        Ver los 100 comentarios
-      </Text>
-
-      <Text className="add-comment">
-        Agregar un comentario
-      </Text>
-      </View>
-    </View>
+    </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  post: {
+    marginBottom: 20,
+    backgroundColor: "#fff",
+  },
+  postHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f0f0f0",
+  },
+  usuario: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  fotoPerfil: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    marginRight: 8,
+  },
+  username: {
+    fontWeight: "600",
+    fontSize: 14,
+  },
+  tiempo: {
+    color: "#999",
+    fontSize: 13,
+    marginLeft: 4,
+  },
+  menu: {
+    fontSize: 18,
+  },
+  postImg: {
+    width: "100%",
+    height: 400,
+  },
+  barraOpciones: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f0f0f0",
+  },
+  botonesIzq: {
+    flexDirection: "row",
+  },
+  botonIcon: {
+    marginRight: 12,
+  },
+  extras: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  likes: {
+    fontWeight: "600",
+    fontSize: 13,
+    marginBottom: 4,
+  },
+  caption: {
+    fontSize: 13,
+    marginBottom: 4,
+  },
+  comentarios: {
+    color: "#999",
+    fontSize: 12,
+  },
+  addComment: {
+    color: "#999",
+    fontSize: 12,
+  },
+});
 
 export default Post;

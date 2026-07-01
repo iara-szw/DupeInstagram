@@ -4,6 +4,8 @@ import { StatusBar } from "expo-status-bar";
 import StackNavigator from "./StackNavigator";
 
 export default function App() {
+  console.log("App mounted");
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
