@@ -12,7 +12,8 @@ export default function StackNavigator() {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{ title: "Instagram" }}
+        options={{ headerShown: false }}
+        //Header shown false recomendado por ia
       />
 
       <Stack.Screen
@@ -23,6 +24,7 @@ export default function StackNavigator() {
       <Stack.Screen
         name="Perfil"
         component={Perfil}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -1,23 +1,46 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import logo from "../assets/logo.png";
+import camara from "../assets/Shape.png";
+import igtv from "../assets/IGTV.png";
+import mensajes from "../assets/mensajes.png";
 
-export default function Header({ navigation }) {
+export default function Header() {
   return (
     <View style={styles.header}>
-      <Text style={styles.logo}>Instagram</Text>
+      <Image source={camara} style={styles.icon} />
+      <Image source={logo} style={styles.logo} />
+      <View style={styles.rightIcons}>
+        <Image source={igtv} style={styles.icon} />
+        <Image source={mensajes} style={styles.icon} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    paddingHorizontal: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#f0f0f0",
+    backgroundColor: "#fff",
   },
   logo: {
-    fontSize: 28,
-    fontWeight: "bold",
-    letterSpacing: 2,
+    width: 120,
+    height: 28,
+    resizeMode: "contain",
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    resizeMode: "contain",
+  },
+  rightIcons: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 18,
   },
 });

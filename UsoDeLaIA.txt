@@ -1,0 +1,13 @@
+El primer uso de la IA del trabajo fue al agarrar los componentes de la antigua versión de la copia de instagram y convertirlos en componentes validos para RN 
+Promt ejemplo:
+"Estoy haciendo una app similar a instagram en react native, ya tengo los componentes en react js, transforma los componentes y etiquetas que no funciones en react nativa (subida de un componente por ejemplo Post)"
+
+
+Una vez armado el proyecto con componentes y paginas en react native la IA fue utilizada para modificar los estilos de forma que quedaran congruentes con el figma de ejemplo.
+Promt ejemplo:
+"(captura del figma) modifica los styles del componente (subida de componente js) para que coincidan con la imagen"
+La mayoria de styles luego fueron modificados para asegurar su similitud con el prototipo en figma y para arreglar pequeños detalles como margenes o widths que no merecian un promt dirigido.
+
+Dentro del proyecto se encuentran comentarios de usos de la IA en la ultima sesión de trabajo en el proyecto pero en su mayoria consistieron en debugging de errores que no encontraba o explicación de temas como el stacknavigator,
+tambien para la funcionalidad de que la imagen de los post se mostrar como foto de perfil lo que recomendo la IA fue tomado y adaptado al proyecto
+
